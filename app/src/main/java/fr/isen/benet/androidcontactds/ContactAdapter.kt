@@ -3,8 +3,10 @@ package fr.isen.benet.androidcontactds
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import fr.isen.benet.androidcontactds.model.ContactAffiche
 
 class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
@@ -23,6 +25,10 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = itemView.findViewById(R.id.name)
+        val rue: TextView = itemView.findViewById(R.id.address_rue)
+        val ville: TextView = itemView.findViewById(R.id.ville)
+        val mail : TextView = itemView.findViewById(R.id.mail)
+        val image : ImageView = itemView.findViewById(R.id.icone_contact)
 
 
         init {
@@ -51,10 +57,39 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
     // Involves populating data into the item through holder
     override fun onBindViewHolder(viewHolder: ContactAdapter.ViewHolder, position: Int) {
         // Get the data model based on position
-        val dish: ContactAffiche = listContact[position]
+        val contact: ContactAffiche = listContact[position]
         // Set item views based on your views and data model
-        val textView = viewHolder.name
-        textView.text = dish.name
+        val nameView = viewHolder.name
+
+        val name = contact.name + " " + contact.lastName
+        nameView.text = name
+
+        val rueView = viewHolder.rue
+
+        val address = contact.location.street.number.toString() + " " + contact.location.street.name
+        rueView.text = address
+
+        val villeView = viewHolder.ville
+        villeView.text = contact.location.city
+
+        val mailView = viewHolder.mail
+        mailView.text = contact.email
+
+        val imageView = viewHolder.image
+
+        var image = contact.picture
+
+        if (image =="") {
+            image = "a"
+        }
+
+
+        Picasso.get().load(image)
+            .error(R.drawable.icone_vide)
+            .centerCrop()
+            .fit()
+            .into(imageView)
+
 
 
     }

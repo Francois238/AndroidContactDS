@@ -62,7 +62,11 @@ class HomeActivity : AppCompatActivity() {
 
 
         for(contact in contacts.results){
-            listContact.add(ContactAffiche(contact.name.first, contact.name.last, contact.email, contact.phone,  contact.picture.large, contact.dob.date))
+
+            listContact.add(
+                ContactAffiche(contact.name.first, contact.name.last, contact.email,
+                                contact.phone,  contact.picture.large, contact.dob.date, contact.location)
+            )
         }
 
 

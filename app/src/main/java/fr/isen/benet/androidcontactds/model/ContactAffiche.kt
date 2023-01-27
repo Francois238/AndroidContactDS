@@ -6,5 +6,6 @@ data class ContactAffiche(
     val email : String,
     val phone : String,
     val picture : String,
-    val birthday : String
+    val birthday : String,
+    val location: Location
 )
