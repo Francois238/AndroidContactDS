@@ -1,12 +1,12 @@
 package fr.isen.benet.androidcontactds
 
-import CircleTransform
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.squareup.picasso.Picasso
 import fr.isen.benet.androidcontactds.databinding.ActivityDetailBinding
 import fr.isen.benet.androidcontactds.model.ContactAffiche
-import java.time.LocalDate
+import fr.isen.benet.androidcontactds.tool.CircleTransform
+import fr.isen.benet.androidcontactds.tool.ObjectWrapperForBinder
 
 class DetailActivity : AppCompatActivity() {
 
@@ -25,6 +25,8 @@ class DetailActivity : AppCompatActivity() {
 
         this.contact = (intent.extras!!.getBinder("Contact") as ObjectWrapperForBinder?)!!.data as ContactAffiche
 
+        //on affiche les donnees du contact
+
         binding.nomProfil.text = contact.name + " " + contact.lastName.uppercase()
 
         binding.mailProfil.text = contact.email
@@ -35,11 +37,11 @@ class DetailActivity : AppCompatActivity() {
 
         binding.villeProfil.text = contact.location.city
 
+        //on formate la date de naissance pour l'afficher
+
         val date = contact.birthday.take(10).split("-").reversed().joinToString("/")
 
         binding.dateProfil.text = date
-
-
 
         var image = contact.picture
 
@@ -49,13 +51,13 @@ class DetailActivity : AppCompatActivity() {
 
         val imageProfil = binding.imageProfil
 
+        //affiche de l'image avec picasso
+
         Picasso.get().load(image)
             .error(R.drawable.icone_vide) //si url invalide, image par défaut
             .centerCrop()
             .fit()
             .transform(CircleTransform())
             .into(imageProfil)
-
-
     }
 }

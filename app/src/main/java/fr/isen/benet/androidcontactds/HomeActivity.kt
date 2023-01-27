@@ -13,6 +13,8 @@ import com.google.gson.Gson
 import fr.isen.benet.androidcontactds.databinding.ActivityHomeBinding
 import fr.isen.benet.androidcontactds.model.ContactAffiche
 import fr.isen.benet.androidcontactds.model.ContactRecu
+import fr.isen.benet.androidcontactds.tool.ContactAdapter
+import fr.isen.benet.androidcontactds.tool.ObjectWrapperForBinder
 
 
 class HomeActivity : AppCompatActivity() {
@@ -46,9 +48,8 @@ class HomeActivity : AppCompatActivity() {
                 val gson = Gson()
 
                 contacts =  gson.fromJson(response.toString(), ContactRecu::class.java)
-                println("contact : $contacts")
 
-                this.displayContacts(contacts)
+                this.displayContacts(contacts) //on affiche les contacts
 
 
             }
@@ -60,7 +61,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun displayContacts(contacts : ContactRecu){
 
-
+        //on ajoute les contacts dans la liste en ne gardant que les informations utiles
+        //d'où la création de la classe ContactAffiche
         for(contact in contacts.results){
 
             listContact.add(

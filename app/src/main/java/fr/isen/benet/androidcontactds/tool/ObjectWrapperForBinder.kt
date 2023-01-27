@@ -1,4 +1,4 @@
-package fr.isen.benet.androidcontactds
+package fr.isen.benet.androidcontactds.tool
 
 import android.os.Binder
 

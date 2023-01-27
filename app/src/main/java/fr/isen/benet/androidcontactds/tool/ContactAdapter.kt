@@ -1,6 +1,5 @@
-package fr.isen.benet.androidcontactds
+package fr.isen.benet.androidcontactds.tool
 
-import CircleTransform
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import fr.isen.benet.androidcontactds.R
 import fr.isen.benet.androidcontactds.model.ContactAffiche
 
 class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
@@ -46,7 +46,7 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
 
     // ... constructor and member variables
     // Usually involves inflating a layout from XML and returning the holder
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
@@ -56,7 +56,7 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
     }
 
     // Involves populating data into the item through holder
-    override fun onBindViewHolder(viewHolder: ContactAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get the data model based on position
         val contact: ContactAffiche = listContact[position]
         // Set item views based on your views and data model
