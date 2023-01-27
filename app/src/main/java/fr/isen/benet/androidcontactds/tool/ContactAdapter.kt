@@ -71,7 +71,7 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
         rueView.text = address
 
         val villeView = viewHolder.ville
-        villeView.text = contact.location.city
+        villeView.text = contact.location.state + " "+ contact.location.city
 
         val mailView = viewHolder.mail
         mailView.text = contact.email

@@ -35,7 +35,7 @@ class DetailActivity : AppCompatActivity() {
 
         binding.adresseProfil.text = contact.location.street.number.toString() + " " + contact.location.street.name
 
-        binding.villeProfil.text = contact.location.city
+        binding.villeProfil.text = contact.location.state + " "+ contact.location.city
 
         //on formate la date de naissance pour l'afficher
 
