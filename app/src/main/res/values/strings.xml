@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AndroidContactDS</string>
+    <string name="message_accueil"> Mes contacts </string>
+    <string name="nom_profil">Nom</string>
+    <string name="adresse_profil">Adresse</string>
+    <string name = "ville_profil">Ville</string>
+    <string name="mail_profil">Mail</string>
+    <string name="tel_profil">Téléphone</string>
+    <string name="date_profil">Date de naissance</string>
 </resources>
