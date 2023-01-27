@@ -1,8 +1,10 @@
 package fr.isen.benet.androidcontactds
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -79,5 +81,16 @@ class HomeActivity : AppCompatActivity() {
         displayContact.adapter = adapter
         // Faire le lien entre le layout manager et le recycler view
         displayContact.layoutManager = LinearLayoutManager(this)
+
+        adapter.setOnItemClickListener(object : ContactAdapter.OnItemClickListener {
+            override fun onItemClick(itemView: View?, position: Int) {
+                val contact = listContact[position]
+
+                val bundle = Bundle()
+                bundle.putBinder("Contact", ObjectWrapperForBinder(contact))
+            //on passe l objet a l activite suivante
+                startActivity(Intent(this@HomeActivity, DetailActivity::class.java).putExtras(bundle))
+            }
+        })
     }
 }

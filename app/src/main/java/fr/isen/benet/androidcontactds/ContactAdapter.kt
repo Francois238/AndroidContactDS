@@ -79,13 +79,13 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
 
         var image = contact.picture
 
-        if (image =="") {
+        if (image =="") { //si l'url est vide, on met du texte pour ne pas faire planter l'appli
             image = "a"
         }
 
 
         Picasso.get().load(image)
-            .error(R.drawable.icone_vide)
+            .error(R.drawable.icone_vide) //si url invalide, image par défaut
             .centerCrop()
             .fit()
             .into(imageView)
