@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -44,7 +43,6 @@ class HomeActivity : AppCompatActivity() {
             Request.Method.GET, url, null,
             { response ->
 
-                //println("String Response : $response")
                 val gson = Gson()
 
                 contacts =  gson.fromJson(response.toString(), ContactRecu::class.java)

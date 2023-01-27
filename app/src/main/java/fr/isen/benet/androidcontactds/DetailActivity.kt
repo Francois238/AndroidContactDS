@@ -1,10 +1,12 @@
 package fr.isen.benet.androidcontactds
 
+import CircleTransform
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.squareup.picasso.Picasso
 import fr.isen.benet.androidcontactds.databinding.ActivityDetailBinding
 import fr.isen.benet.androidcontactds.model.ContactAffiche
+import java.time.LocalDate
 
 class DetailActivity : AppCompatActivity() {
 
@@ -27,11 +29,17 @@ class DetailActivity : AppCompatActivity() {
 
         binding.mailProfil.text = contact.email
 
-        binding.telProfil.text = contact.phone
+        binding.telProfil.text = contact.phone.replace("-", " ")
 
-        binding.adresseProfil.text = contact.location.street.name
+        binding.adresseProfil.text = contact.location.street.number.toString() + " " + contact.location.street.name
 
-        binding.dateProfil.text = contact.birthday
+        binding.villeProfil.text = contact.location.city
+
+        val date = contact.birthday.take(10).split("-").reversed().joinToString("/")
+
+        binding.dateProfil.text = date
+
+
 
         var image = contact.picture
 
@@ -45,6 +53,7 @@ class DetailActivity : AppCompatActivity() {
             .error(R.drawable.icone_vide) //si url invalide, image par défaut
             .centerCrop()
             .fit()
+            .transform(CircleTransform())
             .into(imageProfil)
 
 

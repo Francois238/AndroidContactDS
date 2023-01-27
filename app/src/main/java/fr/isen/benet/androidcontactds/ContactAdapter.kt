@@ -1,5 +1,6 @@
 package fr.isen.benet.androidcontactds
 
+import CircleTransform
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,7 +62,7 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
         // Set item views based on your views and data model
         val nameView = viewHolder.name
 
-        val name = contact.name + " " + contact.lastName
+        val name = contact.name + " " + contact.lastName.uppercase()
         nameView.text = name
 
         val rueView = viewHolder.rue
@@ -85,9 +86,10 @@ class ContactAdapter (private val listContact: List<ContactAffiche>) : RecyclerV
 
 
         Picasso.get().load(image)
-            .error(R.drawable.icone_vide) //si url invalide, image par défaut
+            .error(R.drawable.icone_vide) //si url invalide, image par defaut
             .centerCrop()
             .fit()
+            .transform(CircleTransform())
             .into(imageView)
 
 
